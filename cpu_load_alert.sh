@@ -1,10 +1,18 @@
 #!/bin/bash
-LOAD=70.00
-HOSTNAME=`hostname`
-CPU_LOAD=`sar -P ALL 1 2 |grep 'Average.*all' |awk -F" " '{print 100.0 -$NF}'`
-if [[ $CPU_LOAD > $LOAD ]];
+###Start###
+
+threshold=70
+for i in `cat /admin/hostname`;
+do
+load=$(ssh $i uptime | awk '{ printf("%.2f\n", $8) }')
+HOSTNAME=$(ssh $i hostname -I | awk '{print $1}')
+
+if [[ $load > $threshold ]];
 then
-         echo "CPU Load is Critical $CPU_LOAD on $HOSTNAME"|mail -s "cpu-alert" user1@example.com, user2@example.com
+        echo "CPU load is $load Critical on $HOSTNAME" | mail -s "CPU Mail Alert" laptop@example.com,labuser@example.com
 else
-        echo "`date "+%F %H:%M:%S"` OK - $CPU_LOAD on $HOSTNAME" >> /home/cpu-load
+        echo "$HOSTNAME CPU load is normal" >> /admin/cpuload.log
 fi
+done
+
+###End###
