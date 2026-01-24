@@ -14,6 +14,6 @@ do
 
         if [ $used_percentage -ge $THRESHOLD ];
         then
-                echo "$partition is Reached $used_percentage % on IP $hostname $(date)"
+                echo "$partition is Reached $used_percentage % on IP $hostname $(date)" | mail -s "Memory Utilization is High" testuser1@example.com,testuser2@example.com
         fi
 done
