@@ -47,7 +47,7 @@ sed -i 's/^SELINUX=.*/SELINUX=enforcing/' /etc/selinux/config
 
 ####################################################################################
 
-echo "6.Enable Firewall Service"
+echo "6. Enable Firewall Service"
 
 systemctl enable firewalld
 systemctl start firewalld
