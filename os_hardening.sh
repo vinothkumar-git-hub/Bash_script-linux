@@ -37,7 +37,7 @@ EOF
 
 echo "4. Disable Root login via SSH "
 sed -i 's|^#Banner.*|Banner /etc/issue.net |' /etc/ssh/sshd_config
-sed -i 's/^PermitRootLogin.*/PermitRootLogin No/' /etc/ssh/sshd_config
+sed -i 's/^#PermitRootLogin.*/PermitRootLogin No/' /etc/ssh/sshd_config
 systemctl restart sshd
 
 ####################################################################################
