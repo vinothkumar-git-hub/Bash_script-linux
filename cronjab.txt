@@ -1,0 +1,5 @@
+#Min   Hrs     DoM    Month    DoW #
+#----------------------------------#
+00      */4     *       *       *       /home/labadmin/script/learning/compare.sh
+
+00      06      *       *       *       find /home/labadmin/script/ -mtime +3 -iname "*.csv" -delete
